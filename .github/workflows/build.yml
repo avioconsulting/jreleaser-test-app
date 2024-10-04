@@ -1,0 +1,35 @@
+name: Maven Build and Release for Mule-Plugin
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'chore/**'
+      - 'feat/**'
+      - 'fix/**'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  Build-Maven:
+    uses: avioconsulting/shared-workflows/.github/workflows/maven-build.yml@main
+    secrets: inherit
+    with:
+      include-mule-ee-repo: false
+      stage-maven-artifacts: true
+
+  Release-Maven:
+    needs: Build-Maven
+    uses: avioconsulting/shared-workflows/.github/workflows/maven-release.yml@main
+    secrets: inherit
+    with:
+      app-version: ${{ needs.Build-Maven.outputs.app-version }}
+      publish-maven-central: false
+
+  Post-Release-Maven:
+    needs: [Build-Maven, Release-Maven]
+    uses: avioconsulting/shared-workflows/.github/workflows/maven-post-release.yml@main
+    secrets: inherit
+    with:
+      app-version: ${{ needs.Build-Maven.outputs.app-version }}
