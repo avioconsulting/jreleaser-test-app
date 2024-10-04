@@ -1,0 +1,82 @@
+project:
+  name: jreleaser-test-app
+  description: A Test app to verify JReleaser
+  longDescription: |
+    A Test app to verify JReleaser.
+
+  links:
+    homepage: https://github.com/avioconsulting/
+    documentation: https://avioconsulting.github.io/jreleaser-test-app/
+    license: https://github.com/avioconsulting/jreleaser-test-app/blob/main/LICENSE
+    contribute: https://github.com/avioconsulting/jreleaser-test-app/blob/main/CONTRIBUTING.adoc
+  authors:
+    - Adam DesJardin
+    - Manik Magar
+  license: BSD 2-Clause
+  inceptionYear: "2024"
+  tags:
+    - jreleaser
+    - maven
+  java:
+    groupId: com.avioconsulting
+    version: 8
+
+release:
+  github:
+    owner: 'avioconsulting'
+    overwrite: true
+    draft: false
+    sign: true
+    releaseName: '{{tagName}}'
+    skipTag: false
+    milestone:
+      close: false
+    changelog:
+      skipMergeCommits: true
+      formatted: ALWAYS
+      preset: conventional-commits
+      format: '- {{commitShortHash}} {{commitTitle}}'
+      contributors:
+        format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
+      labelers:
+        - label: 'dependencies'
+          title: 'chore(deps):'
+          order: 130
+      categories:
+        - title: '⚙️  Dependencies'
+          key: 'dependencies'
+          order: 80
+          labels:
+            - 'dependencies'
+      hide:
+        categories:
+          - 'merge'
+        contributors:
+          - 'GitHub'
+
+checksum:
+  individual: true
+
+signing:
+  active: ALWAYS
+  armored: true
+  mode: MEMORY
+
+deploy:
+  maven:
+    nexus2:
+      maven-central:
+        active: ALWAYS
+        url: https://oss.sonatype.org/service/local
+        snapshotUrl: https://oss.sonatype.org/content/repositories/snapshots
+        applyMavenCentralRules: true
+        verifyPom: false
+        closeRepository: true
+        releaseRepository: true
+        stagingRepositories:
+          - target/staging-deploy
+
+distributions:
+  jreleaser-test-app:
+    artifacts:
+      - path: target/jreleaser-test-app-{{projectVersion}}.jar
