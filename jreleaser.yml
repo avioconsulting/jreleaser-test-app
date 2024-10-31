@@ -62,24 +62,12 @@ release:
         - 'test'
         - 'docs'
       categories:
-        - title: '🚀 Features'
-          labels:
-            - 'feature'
-        - title: '🐛 Issues'
-          labels:
-            - 'issue'
-        - title: '🧰 Tasks'
-          labels:
-            - 'task'
         - title: '🧹 Dependency and Plugin Updates'
           labels:
             - 'deps'
         - title: '🧪 Test Updates'
           labels:
             - 'test'
-        - title: '📝 Documentation'
-          labels:
-            - 'docs'
       replacers:
         - search: 'feat: '
         - search: 'fix: '
