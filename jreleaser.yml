@@ -39,35 +39,25 @@ release:
       contributors:
         format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
       labelers:
-        - label: 'bot'
-          contributor: '^.*(\[bot\])$'
-          order: 1
-        - label: 'feature'
-          title: 'feat:'
-        - label: 'issue'
-          title: 'fix:'
-        - label: 'task'
-          title: 'chore:'
-        - label: 'deps'
+        - label: 'bot-commits'
+          contributor: 'regex:^.*(\[bot\])$'
+        - label: 'dependencies'
           title: 'deps:'
-        - label: 'test'
-          title: 'test:'
-        - label: 'docs'
-          title: 'docs:'
-      includeLabels:
-        - 'feature'
-        - 'issue'
-        - 'task'
-        - 'deps'
-        - 'test'
-        - 'docs'
+          order: 130
+      excludeLabels:
+        - 'bot-commits'
       categories:
-        - title: '🧹 Dependency and Plugin Updates'
+        - title: '⚙️  Dependencies'
+          key: 'dependencies'
+          order: 80
           labels:
-            - 'deps'
-        - title: '🧪 Test Updates'
-          labels:
-            - 'test'
+            - 'dependencies'
+      hide:
+        categories:
+          - 'merge'
+        contributors:
+          - 'GitHub'
+          - '^.*(\[bot\])$'
       replacers:
         - search: 'feat: '
         - search: 'fix: '
@@ -75,12 +65,6 @@ release:
         - search: 'deps: '
         - search: 'test: '
         - search: 'docs: '
-      hide:
-        categories:
-          - 'merge'
-        contributors:
-          - 'GitHub'
-          - '^.*(\[bot\])$'
 
 checksum:
   individual: true
@@ -90,19 +74,19 @@ signing:
   armored: true
   mode: MEMORY
 
-deploy:
-  maven:
-    nexus2:
-      maven-central:
-        active: ALWAYS
-        url: https://oss.sonatype.org/service/local
-        snapshotUrl: https://oss.sonatype.org/content/repositories/snapshots
-        applyMavenCentralRules: true
-        verifyPom: false
-        closeRepository: true
-        releaseRepository: true
-        stagingRepositories:
-          - target/staging-deploy
+# deploy:
+#   maven:
+#     nexus2:
+#       maven-central:
+#         active: ALWAYS
+#         url: https://oss.sonatype.org/service/local
+#         snapshotUrl: https://oss.sonatype.org/content/repositories/snapshots
+#         applyMavenCentralRules: true
+#         verifyPom: false
+#         closeRepository: true
+#         releaseRepository: true
+#         stagingRepositories:
+#           - target/staging-deploy
 
 distributions:
   jreleaser-test-app:
