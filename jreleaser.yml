@@ -39,20 +39,60 @@ release:
       contributors:
         format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
       labelers:
-        - label: 'dependencies'
-          title: 'chore(deps):'
-          order: 130
+        - label: 'bot'
+          contributor: '^.*(\[bot\])$'
+          order: 1
+        - label: 'feature'
+          title: 'feat:'
+        - label: 'issue'
+          title: 'fix:'
+        - label: 'task'
+          title: 'chore:'
+        - label: 'deps'
+          title: 'deps:'
+        - label: 'test'
+          title: 'test:'
+        - label: 'docs'
+          title: 'docs:'
+      includeLabels:
+        - 'feature'
+        - 'issue'
+        - 'task'
+        - 'deps'
+        - 'test'
+        - 'docs'
       categories:
-        - title: '⚙️  Dependencies'
-          key: 'dependencies'
-          order: 80
+        - title: '🚀 Features'
           labels:
-            - 'dependencies'
+            - 'feature'
+        - title: '🐛 Issues'
+          labels:
+            - 'issue'
+        - title: '🧰 Tasks'
+          labels:
+            - 'task'
+        - title: '🧹 Dependency and Plugin Updates'
+          labels:
+            - 'deps'
+        - title: '🧪 Test Updates'
+          labels:
+            - 'test'
+        - title: '📝 Documentation'
+          labels:
+            - 'docs'
+      replacers:
+        - search: 'feat: '
+        - search: 'fix: '
+        - search: 'chore: '
+        - search: 'deps: '
+        - search: 'test: '
+        - search: 'docs: '
       hide:
         categories:
           - 'merge'
         contributors:
           - 'GitHub'
+          - '^.*(\[bot\])$'
 
 checksum:
   individual: true
