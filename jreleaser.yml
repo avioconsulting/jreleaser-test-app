@@ -31,6 +31,14 @@ release:
     skipTag: false
     milestone:
       close: false
+    issues:
+      enabled: true
+      comment: '🎉 This issue has been resolved in `{{tagName}}` ([Release Notes]({{releaseNotesUrl}}))'
+      applyMilestone: ALWAYS
+      label:
+        name: released
+        color: '#FF0000'
+        description: Issue has been released
     changelog:
       skipMergeCommits: true
       formatted: ALWAYS
@@ -87,7 +95,15 @@ signing:
 #         releaseRepository: true
 #         stagingRepositories:
 #           - target/staging-deploy
-
+#announce:
+#  smtp:
+#    active: RELEASE
+#    host: smtp.gmail.com
+#    port: 587
+#    username: mmagar@avioconsulting.com
+#    from: mmagar@avioconsulting.com
+#    to: mmagar@avioconsulting.com
+#    messageTemplate: src/jreleaser/templates/smtp.tpl
 distributions:
   jreleaser-test-app:
     artifacts:
