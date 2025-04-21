@@ -96,15 +96,15 @@ signing:
 #         releaseRepository: true
 #         stagingRepositories:
 #           - target/staging-deploy
-#announce:
-#  smtp:
-#    active: RELEASE
-#    host: smtp.gmail.com
-#    port: 587
-#    username: mmagar@avioconsulting.com
-#    from: mmagar@avioconsulting.com
-#    to: mmagar@avioconsulting.com
-#    messageTemplate: src/jreleaser/templates/smtp.tpl
+announce:
+  smtp:
+    active: RELEASE
+    host: smtp.gmail.com
+    port: 587
+    username: mmagar@avioconsulting.com
+    from: mmagar@avioconsulting.com
+    to: mmagar@avioconsulting.com
+    messageTemplate: src/jreleaser/templates/smtp.tpl
 distributions:
   jreleaser-test-app:
     artifacts:

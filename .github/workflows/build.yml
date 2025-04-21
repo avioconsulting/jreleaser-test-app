@@ -21,7 +21,7 @@ jobs:
 
   Release-Maven:
     needs: Build-Maven
-    uses: avioconsulting/shared-workflows/.github/workflows/maven-release.yml@main
+    uses: avioconsulting/shared-workflows/.github/workflows/maven-release.yml@feat/jrel-announce
     secrets: inherit
     with:
       app-version: ${{ needs.Build-Maven.outputs.app-version }}
