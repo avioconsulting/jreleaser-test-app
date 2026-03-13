@@ -88,7 +88,7 @@ upload:
     app:
       active: ALWAYS
       bucket: avio-public-artifacts
-      region: us-east-2
+      region: US_EAST_2
       path: '/test/test-app/{{artifactFile}}'
       downloadUrl: 'https://storage.googleapis.com/avio-public-artifacts/test/test-app/{{artifactFile}}'
       endpoint: 'storage.googleapis.com'
