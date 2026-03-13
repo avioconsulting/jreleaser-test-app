@@ -82,6 +82,15 @@ signing:
   active: ALWAYS
   armored: true
   mode: MEMORY
+  
+upload:
+  s3:
+    app:
+      active: ALWAYS
+      bucket: avio-public-artifacts
+      path: '/test/test-app/{{artifactFile}}'
+      downloadUrl: 'https://storage.googleapis.com/avio-public-artifacts/test/test-app/{{artifactFile}}'
+      endpoint: 'storage.googleapis.com'
 
 # deploy:
 #   maven:
@@ -96,15 +105,15 @@ signing:
 #         releaseRepository: true
 #         stagingRepositories:
 #           - target/staging-deploy
-announce:
-  smtp:
-    active: RELEASE
-    host: smtp.gmail.com
-    port: 587
-    username: mmagar@avioconsulting.com
-    from: mmagar@avioconsulting.com
-    to: mmagar@avioconsulting.com
-    messageTemplate: src/jreleaser/templates/smtp.tpl
+# announce:
+#   smtp:
+#     active: RELEASE
+#     host: smtp.gmail.com
+#     port: 587
+#     username: mmagar@avioconsulting.com
+#     from: mmagar@avioconsulting.com
+#     to: mmagar@avioconsulting.com
+#     messageTemplate: src/jreleaser/templates/smtp.tpl
 distributions:
   jreleaser-test-app:
     artifacts:
